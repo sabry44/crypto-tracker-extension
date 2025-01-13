@@ -112,13 +112,45 @@
     .tab-content.active {
       display: block;
     }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #f8f9fa;
+    }
+    .dark-mode .crypto-list {
+      background: #2a2a2a;
+    }
+    .dark-mode .crypto-item {
+      border-bottom: 1px solid #444;
+    }
+    .dark-mode .crypto-name, .dark-mode .crypto-symbol, .dark-mode .crypto-price {
+      color: #f8f9fa;
+    }
+    .dark-mode .loading {
+      color: #aaa;
+    }
+    .dark-mode .tab {
+      color: #aaa;
+    }
+    .dark-mode .tab.active {
+      background-color: #444;
+      color: #f8f9fa;
+    }
+    .dark-mode .tab:hover:not(.active) {
+      background-color: #333;
+    }
   </style>
 </head>
 <body>
   <div class="header">
     <h1>Crypto Market Tracker</h1>
     <button class="refresh-btn" id="refreshBtn">Refresh</button>
+    <label class="switch">
+      <input type="checkbox" id="darkModeToggle">
+      <span class="slider round"></span>
+    </label>
   </div>
+  
+  <input type="text" id="searchBar" placeholder="Search for a cryptocurrency...">
   
   <div class="tabs">
     <div class="tab active" data-tab="market-cap">Top 10</div>
@@ -143,6 +175,17 @@
       <div class="loading">Loading...</div>
     </div>
   </div>
+  
+  <div id="priceAlerts">
+    <h2>Price Alerts</h2>
+    <div id="alertsList">
+      <div class="loading">No alerts set.</div>
+    </div>
+    <input type="text" id="alertCrypto" placeholder="Cryptocurrency">
+    <input type="number" id="alertPrice" placeholder="Price">
+    <button id="setAlertBtn">Set Alert</button>
+  </div>
+  
   <script src="popup.js"></script>
 </body>
 </html>

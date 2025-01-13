@@ -9,6 +9,9 @@ A Chrome extension that shows the top 10 cryptocurrencies by market capitalizati
 - Clean, modern UI with cryptocurrency icons
 - Manual refresh button to update data
 - Responsive and user-friendly design
+- Dark mode option to reduce eye strain
+- Search bar to quickly find specific cryptocurrencies
+- Price alerts for specific cryptocurrencies
 
 ## Installation
 
@@ -24,6 +27,9 @@ A Chrome extension that shows the top 10 cryptocurrencies by market capitalizati
 - Click the "Refresh" button to fetch the latest data
 - Hover over cryptocurrencies to see their full names
 - Green arrows indicate price increases, red arrows indicate decreases
+- Toggle dark mode using the switch in the header
+- Use the search bar to filter cryptocurrencies by name or symbol
+- Set price alerts for specific cryptocurrencies and get notified when the price reaches the set threshold
 
 ## Data Source
 

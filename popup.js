@@ -16,6 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById(tab.dataset.tab).classList.add('active');
     });
   });
+
+  document.getElementById('darkModeToggle').addEventListener('change', (event) => {
+    document.body.classList.toggle('dark-mode', event.target.checked);
+  });
+
+  document.getElementById('searchBar').addEventListener('input', (event) => {
+    filterCryptocurrencies(event.target.value);
+  });
+
+  document.getElementById('setAlertBtn').addEventListener('click', () => {
+    setPriceAlert();
+  });
 });
 
 async function fetchAllData() {
@@ -187,4 +199,46 @@ function formatPercentage(percentage) {
     return '0.00';
   }
   return Math.abs(percentage).toFixed(2);
+}
+
+function filterCryptocurrencies(query) {
+  const cryptoItems = document.querySelectorAll('.crypto-item');
+  cryptoItems.forEach(item => {
+    const name = item.querySelector('.crypto-name').textContent.toLowerCase();
+    const symbol = item.querySelector('.crypto-symbol').textContent.toLowerCase();
+    if (name.includes(query.toLowerCase()) || symbol.includes(query.toLowerCase())) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+function setPriceAlert() {
+  const crypto = document.getElementById('alertCrypto').value;
+  const price = parseFloat(document.getElementById('alertPrice').value);
+  if (!crypto || isNaN(price)) {
+    alert('Please enter a valid cryptocurrency and price.');
+    return;
+  }
+
+  const alertsList = document.getElementById('alertsList');
+  const alertItem = document.createElement('div');
+  alertItem.className = 'crypto-item';
+  alertItem.innerHTML = `
+    <div class="crypto-info">
+      <span class="crypto-name">${crypto}</span>
+      <span class="crypto-price">$${formatPrice(price)}</span>
+    </div>
+  `;
+  alertsList.appendChild(alertItem);
+
+  // Save the alert to local storage
+  const alerts = JSON.parse(localStorage.getItem('priceAlerts')) || [];
+  alerts.push({ crypto, price });
+  localStorage.setItem('priceAlerts', JSON.stringify(alerts));
+
+  // Clear input fields
+  document.getElementById('alertCrypto').value = '';
+  document.getElementById('alertPrice').value = '';
 }
