@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Crypto Market Cap Tracker",
   "version": "1.0",
-  "description": "Monitor top 10 cryptocurrencies by market cap",
+  "description": "Monitor top 10 cryptocurrencies by market cap, with dark mode, search, and price alerts",
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
